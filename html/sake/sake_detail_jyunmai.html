@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../CSS/detail_info.css">
+</head>
+
+<body onload="init()">
+    <div id="topcontainer">
+        <h1>쥰마이(純米)</h1><br>
+        <div id="selcontainer">
+            <div class="sel01">
+                <select name="selOPtion" id="selOPtion">
+                    <option value="popular">인기순</option>
+                    <option value="recommend">추천순</option>
+                    <option value="expensive">높은 가격순</option>
+                    <option value="cheap">낮은 가격순</option>
+                </select>
+            </div>
+            <div class="sel02">
+                <select name="quantityCon" id="quantityCon">
+                    <option value="10" selected>10개씩 보기</option>
+                    <option value="15">15개씩 보기</option>
+                    <option value="20">20개씩 보기</option>
+                    <option value="25">25개씩 보기</option>
+                    <option value="30">30개씩 보기</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="categorycontainer">
+        <br>
+        <section id="slist">
+
+        </section>
+
+        <footer>
+            <div class="pagenavi">
+                <a class="page">＜</a>
+                <a class="page" href="sake_detail_jyunmai.html">1</a>
+                <a class="page">＞</a>
+            </div>
+        </footer>
+    </div>
+    <script src="../../js/sake/jyunmai_sake_detail.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            let message = { height: document.body.scrollHeight };
+
+            window.top.postMessage(message, "*");
+        });
+    </script>
+</body>
+
+</html>

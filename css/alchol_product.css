@@ -1,0 +1,50 @@
+#wrapper{
+    width: 1280px;
+    height: auto;
+    margin: 0 auto;
+}
+
+#wrapper .infoBox{
+    height: 800px;
+}
+
+#wrapper .infoBox .imgBox{
+    float: left;
+    width: 640px;   
+}
+
+#wrapper .infoBox .imgBox .alcholImg{
+    margin-left: 100px;
+    width: 450px;
+    height: 500px;
+    
+}
+
+#wrapper .infoBox .heartBox{
+    width: 50px;
+    height: 50px;
+}
+
+.heartBox img{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 61px;
+    right: 60px;
+}
+
+#wrapper .infoBox .detailBox{
+    float: left;
+    width: 600px;
+}
+
+#wrapper .infoBox .detailBox .ButtonBox{
+    margin-top: 40px;
+}
+
+
+#wrapper .infoBox .detailBox .ButtonBox input{
+    width: 200px;
+    height: 50px;
+}
+

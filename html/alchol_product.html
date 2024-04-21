@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../css/alchol_product.css">
+    <script src="./../js/alchol_product.js"></script>
+</head>
+
+<body onload="onInit()">
+    <div id="wrapper">
+        <div class="infoBox">
+            <div class="imgBox">
+                <img src="../img/Sake/daiginjyo/bokusi.png" alt="bokusi" class = "alcholImg">
+            </div>
+
+            
+
+            <div class="detailBox">
+                <div class = "textDetailBox">
+                    <p id = "subTitle"></p>
+                    <h3 id = "name"></h3>
+                    <hr>
+                    <h3 id = "price"></h3>
+                    <p id = "dosu"></p>
+                    <p id = "jujoArea"></p>
+                    <p id = "jujosa"></p>
+                    <p id = "descript"></p>
+                </div>
+
+                <div class = "ButtonBox">
+                    <input type="button" value="장바구니" onclick="putCart()">
+                    <input type="button" value="구매하기">
+                </div>
+            </div>
+
+            <div class="heartBox">
+                <img src="../img/off_heart.png" alt="off_heart" id = "heartImg" onclick="choiceHeart()">
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', function () {
+            let message = { height: document.body.scrollHeight };
+
+            window.top.postMessage(message, "*");
+        });
+    </script>
+</body>
+
+</html>
