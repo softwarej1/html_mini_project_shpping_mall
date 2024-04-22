@@ -277,6 +277,21 @@ function onInit(){
         descript.innerHTML = "상세 설명 : " + sojuDescript[localIdx];
         alcholImg[0].src = sojuPic[localIdx];
     }
+
+    
+    let heartName = localStorage.getItem("heartName");
+    let heartIdx = localStorage.getItem("heartIdx");
+    let heartImg = document.getElementById("heartImg");
+
+    let heartNameArr = heartName.split(",");
+    let heartIdxArr = heartIdx.split(",");
+    for(let idx = 0; idx < heartIdxArr.length; idx++){
+        if(localIdx === heartIdxArr[idx] && localName === heartNameArr[idx]){
+            heartImg.src ="./../img/on_heart.png";
+            break;
+        }
+    }
+    
 }
 
 // ----------------- 술 상품 찜 버튼 ------------------------
@@ -292,9 +307,8 @@ function choiceHeart(){
         heartClick = true;
     }
 
-    /*
-    ------ 찜 버튼을 클릭 시 localStorage에 데이터 저장 한번 더 클릭 시 저장된 데이터 삭제 -> ** 미 구현
-
+    
+    //------ 찜 버튼을 클릭 시 localStorage에 데이터 저장 한번 더 클릭 시 저장된 데이터 삭제
     let heartName = localStorage.getItem("heartName");
     let heartIdx = localStorage.getItem("heartIdx");
     let localName = localStorage.getItem("name");
@@ -308,27 +322,20 @@ function choiceHeart(){
         heartIdx = "";
     }
 
+    let localIdxArr = localIdx.split(",");
+    let localNameArr = localName.split(",");
     let vheartNameArr = heartName.split(",");
     let vheartIdxArr = heartIdx.split(",");
 
-    for(let idx = 0; idx < vheartNameArr.length; idx++){
-        if((localName == vheartNameArr[idx]) && (localIdx == vheartIdxArr[idx])){ ------> ** data 비교 시 이상!!
-            vheartNameArr.splice(idx, 1);
-            vheartIdxArr.splice(idx, 1);
+    // 클릭 시 localIdx, localName 배열 -> heart에 idx와 name의 배열값과 일치할 시 데이터 제거
+    for(let idx = 0; idx < vheartIdxArr.length; idx++){    
+        if(localIdxArr[0] === vheartIdxArr[idx] && localNameArr[0] === vheartNameArr[idx]){
+            alert("찜 목록에서 제거되었습니다.");
+            let vheartNameSlice = vheartNameArr.slice(idx + 1);
+            let vheartIdxSlice = vheartIdxArr.slice(idx + 1);
 
-            let vheartNameStr = vheartNameArr.join(",");
-            let vheartIdxStr = vheartIdxArr.join(",");
-
-            localStorage.setItem("heartName", vheartNameStr);
-            localStorage.setItem("heartIdx", vheartIdxStr);
-
-            return;
-        }else{
-            vheartNameArr.push(localName);
-            vheartIdxArr.push(localIdx);
-
-            let vheartNameStr = vheartNameArr.join(",");
-            let vheartIdxStr = vheartIdxArr.join(",");
+            let vheartNameStr = vheartNameSlice.join(",");
+            let vheartIdxStr = vheartIdxSlice.join(",");
 
             localStorage.setItem("heartName", vheartNameStr);
             localStorage.setItem("heartIdx", vheartIdxStr);
@@ -336,7 +343,18 @@ function choiceHeart(){
             return;
         }
     }
-    */
+
+    // 일치하지 않을 시 데이터 유지
+    alert("찜 목록에 추가되었습니다.");
+    vheartNameArr.push(localName);
+    vheartIdxArr.push(localIdx);
+
+    let vheartNameStr = vheartNameArr.join(",");
+    let vheartIdxStr = vheartIdxArr.join(",");
+
+    localStorage.setItem("heartName", vheartNameStr);
+    localStorage.setItem("heartIdx", vheartIdxStr);
+    
 }
 
 // ------------------------ 장바구니 버튼 -----------------------------
@@ -349,16 +367,8 @@ function putCart(){
     let cartName = localStorage.getItem("cartName");
     let cartIdx = localStorage.getItem("cartIdx");
 
-    if(cartName === null){
-        cartName = "";
-    }
-
-    if(cartIdx === null){
-        cartIdx = "";
-    }
-
-    let cartNameArr = cartName.split(",");
-    let cartIdxArr = cartIdx.split(",");
+    let cartNameArr = cartName ? cartName.split(",") : [];
+    let cartIdxArr = cartIdx ? cartIdx.split(",") : [];
 
     cartNameArr.push(localName);
     cartIdxArr.push(localIdx);

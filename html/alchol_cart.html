@@ -19,7 +19,7 @@
 
         <table class = "cart_table" width = "1280px">
             <tr>
-                <th width = "30px"><input type="checkbox"></th>
+                <th width = "30px"><input type="checkbox" class="Chk" onclick="allChkTop()"></th>
                 <th width = "550px" colspan="2">상품정보</th>
                 <th width = "400px">옵션</th>
                 <th width = "150px">상품금액</th>
@@ -28,13 +28,13 @@
         </table>
 
         <div class="select_box">
-            <input type="checkbox">
-            <input type="button" value="선택상품 삭제" class = "product_delete">
+            <input type="checkbox" class="Chk02" onclick="allChkBottoom()">
+            <input type="button" value="선택상품 삭제" class = "product_delete" onclick="del_product()">
             <input type="button" value="선택상품 찜" class = "product_zzim">
         </div>
 
         <div class = "payment_box">
-            <input type="button" value="쇼핑 계속하기">
+            <input type="button" value="쇼핑 계속하기" onclick="goShopping()">
             <input type="button" value="주문하기">
         </div>
     </div>

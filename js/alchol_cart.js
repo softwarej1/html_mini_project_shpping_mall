@@ -85,7 +85,7 @@ function onInit(){
     let vCartIdx = cartIdx.split(",");
     let vCartName = cartName.split(",");
 
-    for(let idx = 1; idx < vCartIdx.length; idx++){
+    for(let idx = 0; idx < vCartIdx.length; idx++){
         let table = document.querySelector('.cart_table'); // document.querySelector() -> css 선택자처럼 사용할 수 있는 메서드 .cart_table -> table 정보를 변수에 반환
         let newRow = document.createElement('tr'); // createElement() -> 요소 생성 -> 'tr'
         newRow.classList.add("cart_list_detail"); // class 속성 추가 -> tr 태그 Ex ] <tr class = "cart_list_detail">
@@ -97,6 +97,7 @@ function onInit(){
         checkboxInput.setAttribute("type", 'checkbox'); // setAttribute() -> 속성 부여 type, checkbox
         checkboxCell.appendChild(checkboxInput); // 해당 요소에 자식으로 추가
         newRow.appendChild(checkboxCell);
+        checkboxInput.classList.add("check");
 
         // --------------- 이미지 셀 영역 --------------------------
 
@@ -174,4 +175,70 @@ function onInit(){
 
         table.appendChild(newRow); // 테이블에 appendChild -> 자식으로 추가
     }
+}
+
+//------------------------모든 체크박스 체크 해제(상단)----------------------------
+
+function allChkTop(){
+    let chkboxes = document.querySelectorAll(".check");
+    let checkAll = document.querySelector(".Chk").checked;
+    let checkAll02 = document.querySelector(".Chk02");
+
+    checkAll02.checked = checkAll;
+    for (let i = 0; i < chkboxes.length; i++) {
+        chkboxes[i].checked = checkAll;
+    }
+}
+//------------------------모든 체크박스 체크 해제(하단)----------------------------
+function allChkBottoom(){
+    let chkboxes = document.querySelectorAll(".check");
+    let checkAll = document.querySelector(".Chk");
+    let checkAll02 = document.querySelector(".Chk02").checked;
+
+    checkAll.checked = checkAll02;
+    for (let i = 0; i < chkboxes.length; i++) {
+        chkboxes[i].checked = checkAll.checked;
+    }
+}
+
+function goShopping(){
+    location.href = "./alchol_main.html";
+}
+
+// ----------------------------- 장바구니 제거 버튼 ------------------------------------
+function del_product(){
+    // Html Dom - checkBox[] 배열 반환 
+    let checkBox = document.querySelectorAll(".check");
+
+    // 장바구니 idx, name 값 반환
+    let cartIdx = localStorage.getItem("cartIdx");
+    let cartName = localStorage.getItem("cartName");
+
+    // cartIdxArr, cartNameArr -> null이 아닐 시 true(cartIdx.split(",")) null일 시 false [] 
+    let cartIdxArr = cartIdx ? cartIdx.split(",") : [];
+    let cartNameArr = cartName ? cartName.split(",") : [];
+
+    let cartIdxSlice;
+    let cartNameSlice;
+
+    for(let i = 0; i < checkBox.length; i++){
+        if(checkBox[i].checked === true){
+           cartIdxSlice = cartIdxArr.slice(i + 1);
+           cartNameSlice = cartNameArr.slice(i + 1);
+        }
+    }
+
+    let cartIdxStr = cartIdxSlice ? cartIdxSlice.join(",") : "";
+    let cartNameStr = cartNameSlice ? cartNameSlice.join(",") : "";
+
+    // cartIdxStr, cartNameStr이 ""일 시 키 제거
+    if (cartIdxStr === "" || cartNameStr === "") {
+        localStorage.removeItem("cartIdx");
+        localStorage.removeItem("cartName");
+    } else {
+        localStorage.setItem("cartIdx", cartIdxStr);
+        localStorage.setItem("cartName", cartNameStr);
+    }
+
+    alert("선택된 상품이 삭제되었습니다.");
 }
