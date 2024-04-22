@@ -97,6 +97,7 @@ function onInit(){
         checkboxInput.setAttribute("type", 'checkbox'); // setAttribute() -> 속성 부여 type, checkbox
         checkboxCell.appendChild(checkboxInput); // 해당 요소에 자식으로 추가
         newRow.appendChild(checkboxCell);
+        checkboxInput.classList.add("check");
 
         // --------------- 이미지 셀 영역 --------------------------
 
@@ -173,5 +174,29 @@ function onInit(){
         newRow.appendChild(deliveryCell);
 
         table.appendChild(newRow); // 테이블에 appendChild -> 자식으로 추가
+    }
+}
+
+//------------------------모든 체크박스 체크 해제(상단)----------------------------
+
+function allChkTop(){
+    let chkboxes = document.querySelectorAll(".check");
+    let checkAll = document.querySelector(".Chk").checked;
+    let checkAll02 = document.querySelector(".Chk02");
+
+    checkAll02.checked = checkAll;
+    for (let i = 0; i < chkboxes.length; i++) {
+        chkboxes[i].checked = checkAll;
+    }
+}
+//------------------------모든 체크박스 체크 해제(하단)----------------------------
+function allChkBottoom(){
+    let chkboxes = document.querySelectorAll(".check");
+    let checkAll = document.querySelector(".Chk");
+    let checkAll02 = document.querySelector(".Chk02").checked;
+
+    checkAll.checked = checkAll02;
+    for (let i = 0; i < chkboxes.length; i++) {
+        chkboxes[i].checked = checkAll.checked;
     }
 }
